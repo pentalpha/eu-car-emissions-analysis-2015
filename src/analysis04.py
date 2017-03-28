@@ -17,7 +17,6 @@ kmPerYear=12284.03
 data = pd.read_csv(datasetPath, header=0)
 
 countriesDF = pd.read_csv(euCountriesPath)
-print(countriesDF)
 countriesDF['totalEmission'] = ''
 countriesDF['totalPerHab'] = ''
 countriesDF['circleSize'] = ''
@@ -27,7 +26,7 @@ emissionsPerHab = []
 circleSize = []
 
 for label, row in countriesDF.iterrows():
-    print(label)
+    print("Processing ", row['id'])
     id = row['id']
     countryDF = data[data.MS == id]
     emission = 0
@@ -40,25 +39,24 @@ for label, row in countriesDF.iterrows():
             e = 0
         emission = emission + (r * e)*kmPerYear
     emissions.append(emission)
-    ePerHab = emission/row['POPULATION']
-    emissionsPerHab.append(ePerHab)
-    circleSize.append(26+ePerHab*0.014)
+    circleSize.append(32 + np.random.randint(low=0, high=10))
 
 for i in range(len(emissions)):
     countriesDF.set_value(i, 'totalEmission', emissions[i]/1000/1000)
     countriesDF.set_value(i, 'totalPerHab', emissionsPerHab[i]/1000)
     countriesDF.set_value(i, 'circleSize', circleSize[i])
-    pollutionFactor = int(emissionsPerHab[i]*0.07)
-    r = str("%0.2X" %(pollutionFactor + 0))
-    g = str("%0.2X" %(255 - int(pollutionFactor)))
-    b = str("%0.2X" % 0)
+    colorFactor = np.random.randint(low=1, high=230)
+    r = str("%0.2X" %(np.random.randint(low=30, high=240)))
+    g = str("%0.2X" %(np.random.randint(low=30, high=240)))
+    b = str("%0.2X" %(np.random.randint(low=0, high=100)))
     countriesDF.set_value(i, 'circleColor', "#"+r+g+b)
 
+print("Making bokeh plot:")
 countriesSource = ColumnDataSource(countriesDF)
 p = figure(x_axis_label='POPULATION', y_axis_label='Emission of CO2 (ton) in 2015', title='Emissions per Country')
 p.circle('POPULATION', 'totalEmission', source=countriesSource, size='circleSize', alpha=0.8, color='circleColor')
 p.text('POPULATION', 'totalEmission',text='id', source=countriesSource, text_baseline="middle", text_align="center")
-p.add_tools(HoverTool(tooltips=[('Name','@COUNTRYNAME'), ('Emissions (kg) per hab.','@totalPerHab')]))
+p.add_tools(HoverTool(tooltips=[('Name','@COUNTRYNAME'), ('Emissions (ton) per hab.','@totalPerHab')]))
 p.plot_width=920
 p.xaxis[0].formatter.use_scientific = False
 
