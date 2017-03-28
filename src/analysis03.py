@@ -35,14 +35,14 @@ for m in manufact:
     for label, row in mData.iterrows():
         r = row['r']
         if(math.isnan(r)):
-            print("Detected NaN on r in ", m, ", e=", e, ", regs=nan." )
-            detectedNaN = True
+            #print("Detected NaN on r in ", m, ", e=", e, ", regs=nan." )
+            #detectedNaN = True
             r = 0
         regs = regs + r
         e = row['e']
         if(math.isnan(e)):
-            print("Detected NaN on e in ", m, ", e=nan, regs=", r, "." )
-            detectedNaN = True
+            #print("Detected NaN on e in ", m, ", e=nan, regs=", r, "." )
+            #detectedNaN = True
             e = 0
         em = em + (e * r)
         if(e <= 95):
