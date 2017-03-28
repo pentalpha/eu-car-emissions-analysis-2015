@@ -8,8 +8,8 @@ from bokeh.models import Span, Label
 from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot, save
 
 #datasetPath = "datasets/CO2-passenger-cars-v12-less.csv"
-datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
-#datasetPath = "datasets/CO2-passenger-cars-v12-treated.csv"
+#datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
+datasetPath = "../datasets/CO2-passenger-cars-v12-treated.csv"
 #datasetPath = "datasets/CO2_passenger_cars_v12.tsv" #use separator='\t
 euCountriesPath = "../datasets/european-union-countries.csv"
 
