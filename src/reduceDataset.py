@@ -6,8 +6,7 @@ from bokeh.plotting import ColumnDataSource
 from bokeh.models import HoverTool
 from bokeh.models import Span, Label
 from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot
-import my
-from my import topX, displayHTML
+from my import topX
 
 data = pd.read_csv("../datasets/CO2_passenger_cars_v12.tsv", sep='\t', header=0)
 

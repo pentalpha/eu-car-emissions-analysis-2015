@@ -6,7 +6,6 @@ from bokeh.plotting import ColumnDataSource
 from bokeh.models import HoverTool
 from bokeh.models import Span, Label
 from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot
-import my
 from my import topX, displayHTML
 #datasetPath = "datasets/CO2-passenger-cars-v12-less.csv"
 datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
