@@ -1,12 +1,16 @@
 import pandas as pd
-import numpy as np
-from bokeh.plotting import figure
-from bokeh.layouts import row
-from bokeh.plotting import ColumnDataSource
-from bokeh.models import HoverTool
-from bokeh.models import Span, Label
-from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot
-from my import topX
+def topX(dataFrame, topx, column, ascendingOrder=False):
+    sorted = data.sort([column], ascending=ascendingOrder)
+    nRows = data.shape[0]
+    toRemain = nRows * topx
+    toUse = []
+    for i in range(nRows):
+        if(i <= toRemain):
+            toUse.append(True)
+        else:
+            toUse.append(False)
+    return data[toUse]
+
 
 data = pd.read_csv("../datasets/CO2_passenger_cars_v12.tsv", sep='\t', header=0)
 
