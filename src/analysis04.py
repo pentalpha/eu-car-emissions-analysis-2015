@@ -50,11 +50,12 @@ for i in range(len(emissions)):
 
 print("Making bokeh plot:")
 countriesSource = ColumnDataSource(countriesDF)
-p = figure(x_axis_label='Population (millions)', y_axis_label='Emission of CO2 (ton) in 2015', title='Emissions per Country', x_axis_type="log", x_range=[0, 90])
-p.circle('POPULATION-MILLIONS', 'totalEmission', source=countriesSource, size='circleSize', alpha=0.8, color='circleColor')
-p.text('POPULATION-MILLIONS', 'totalEmission',text='id', source=countriesSource, text_baseline="middle", text_align="center")
-p.add_tools(HoverTool(tooltips=[('Name','@COUNTRYNAME'), ('Pop.', '@POPULATION-MILLIONS'), ('CO2', '@totalEmission')]))
-p.plot_width=920
+p = figure(x_axis_label='Emission of CO2 (ton) in 2015', y_axis_label='Population (millions)', title='Emissions per Country', x_axis_type="log", x_range=[9000, 5013000], y_axis_type="log")
+p.circle('totalEmission', 'millions', source=countriesSource, size='circleSize', alpha=0.8, color='circleColor')
+p.text('totalEmission', 'millions', text='id', source=countriesSource, text_baseline="middle", text_align="center")
+p.add_tools(HoverTool(tooltips=[('Name','@COUNTRYNAME'), ('Pop.', '@millions'), ('CO2', '@totalEmission')]))
+p.plot_height=450
+p.plot_width=600
 #p.xaxis[0].formatter.use_scientific = False
 
 output_file('../results/eu-emission.html')
