@@ -6,6 +6,7 @@ from bokeh.plotting import ColumnDataSource
 from bokeh.models import HoverTool
 from bokeh.models import Span, Label
 from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot, save
+import math
 
 #datasetPath = "datasets/CO2-passenger-cars-v12-less.csv"
 datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
@@ -35,11 +36,28 @@ for m in manufact:
         em = em + (row['e'] * row['r'])
         if(row['e'] <= 95):
             c95 = c95 + row['r']
+    if(math.isnan(regs)):
+        regs = 0
     registers.append(regs)
+
+    if(math.isnan(em)):
+        em = 0
     totalEmission.append(em)
+
+    if(math.isnan(c95)):
+        c95 = 0
     carsUnder95.append(c95)
-    averageE.append(em / regs)
-    carsUnder95Percent.append((c95/regs)*100)
+
+    if(math.isnan(em / regs) == False):
+        averageE.append(em/regs)
+    else:
+        averageE.append(0)
+
+    if(math.isnan((c95/regs)*100) == False):
+        carsUnder95Percent.append((c95/regs)*100)
+    else:
+        carsUnder95Percent.append(0)
+
 
 manufactFrame = pd.DataFrame()
 manufactFrame = manufactFrame.append(pd.DataFrame({'Mh' : manufactArray}))
@@ -58,6 +76,7 @@ for i in range(len(registers)):
     manufactFrame.set_value(i, 'averageE', averageE[i])
     manufactFrame.set_value(i, 'carsUnder95Percent', carsUnder95Percent[i])
     manufactFrame.set_value(i, 'circleSize', (carsUnder95Percent[i]/2)+25)
+    #if(math.isnan(carsUnder95Percent[i]) || math.isnan(carsUnder95Percent[i]))
     r = str("%0.2X" % int((averageE[i]/1000)*255))
     g = str("%0.2X" % int((carsUnder95Percent[i]/100)*255))
     b = str("%0.2X" % 30)
