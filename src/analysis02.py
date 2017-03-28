@@ -60,4 +60,4 @@ show(p)
 box = BoxPlot(data, values='e', label='Ft',
               color='Ft', plot_width=900, legend=False)
 output_file('../results/box.html')
-show(box)
+save(box)

@@ -55,4 +55,4 @@ p.plot_width=920
 p.xaxis[0].formatter.use_scientific = False
 
 output_file('../results/eu-emission.html')
-show(p)
+save(p)
