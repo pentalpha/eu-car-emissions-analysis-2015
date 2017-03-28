@@ -1,6 +1,6 @@
 import pandas as pd
 def topX(dataFrame, topx, column, ascendingOrder=False):
-    sorted = data.sort([column], ascending=ascendingOrder)
+    sorted = data.sort_values(column, ascending=ascendingOrder)
     nRows = data.shape[0]
     toRemain = nRows * topx
     toUse = []
