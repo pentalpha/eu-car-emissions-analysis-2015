@@ -26,16 +26,20 @@ averageE = []
 carsUnder95 = []
 carsUnder95Percent = []
 for m in manufact:
+    detectedNaN = False
     mData = data[data.Mh == m]
     manufactArray.append(m)
     regs = 0
     em = 0
     c95 = 0
     for label, row in mData.iterrows():
-        regs = regs + row['r']
-        em = em + (row['e'] * row['r'])
+        r = row['r']
+        if(math.isnan(r)):
+            r = 0
+        regs = regs + r
+        em = em + (row['e'] * r)
         if(row['e'] <= 95):
-            c95 = c95 + row['r']
+            c95 = c95 + r
     if(math.isnan(regs)):
         regs = 0
     registers.append(regs)
@@ -51,6 +55,9 @@ for m in manufact:
     if(math.isnan(em / regs) == False):
         averageE.append(em/regs)
     else:
+        if(detectedNaN == False):
+            print("Detected NaN on avgE in ", m, ", em=", em, ", regs=", regs, "." )
+            detectedNaN = True
         averageE.append(0)
 
     if(math.isnan((c95/regs)*100) == False):
