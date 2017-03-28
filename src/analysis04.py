@@ -8,8 +8,8 @@ from bokeh.models import Span, Label
 from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot, save
 
 #datasetPath = "datasets/CO2-passenger-cars-v12-less.csv"
-datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
-#datasetPath = "datasets/CO2-passenger-cars-v12-treated.csv"
+#datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
+datasetPath = "../datasets/CO2-passenger-cars-v12-treated.csv"
 #datasetPath = "datasets/CO2_passenger_cars_v12.tsv" #use separator='\t
 euCountriesPath = "../datasets/european-union-countries.csv"
 
@@ -30,7 +30,13 @@ for label, row in countriesDF.iterrows():
     countryDF = data[data.MS == id]
     emission = 0
     for label, row2 in countryDF.iterrows():
-        emission = emission + (row2['r'] * row2['e'])*kmPerYear
+        e = row2['e']
+        r = row2['r']
+        if(math.isnan(r)):
+            r = 0
+        if(math.isnan(e)):
+            e = 0
+        emission = emission + (r * e)*kmPerYear
     emissions.append(emission)
     ePerHab = emission/row['POPULATION']
     emissionsPerHab.append(ePerHab)
