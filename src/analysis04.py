@@ -6,7 +6,7 @@ from bokeh.plotting import ColumnDataSource
 from bokeh.models import HoverTool
 from bokeh.models import Span, Label
 from bokeh.charts import output_notebook, show, Bar, output_file, BoxPlot, save
-
+import math
 #datasetPath = "datasets/CO2-passenger-cars-v12-less.csv"
 #datasetPath = "../datasets/CO2-passenger-cars-v12-treated-less.csv"
 datasetPath = "../datasets/CO2-passenger-cars-v12-treated.csv"
@@ -16,7 +16,8 @@ euCountriesPath = "../datasets/european-union-countries.csv"
 kmPerYear=12284.03
 data = pd.read_csv(datasetPath, header=0)
 
-countriesDF = pd.read_csv("../datasets/european-union-countries.csv")
+countriesDF = pd.read_csv(euCountriesPath)
+print(countriesDF)
 countriesDF['totalEmission'] = ''
 countriesDF['totalPerHab'] = ''
 countriesDF['circleSize'] = ''
@@ -26,6 +27,7 @@ emissionsPerHab = []
 circleSize = []
 
 for label, row in countriesDF.iterrows():
+    print(label)
     id = row['id']
     countryDF = data[data.MS == id]
     emission = 0
