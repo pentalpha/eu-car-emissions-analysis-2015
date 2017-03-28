@@ -18,11 +18,9 @@ data = pd.read_csv(datasetPath, header=0)
 
 countriesDF = pd.read_csv(euCountriesPath)
 countriesDF['totalEmission'] = ''
-countriesDF['totalPerHab'] = ''
 countriesDF['circleSize'] = ''
 countriesDF['circleColor'] = ''
 emissions = []
-emissionsPerHab = []
 circleSize = []
 
 for label, row in countriesDF.iterrows():
