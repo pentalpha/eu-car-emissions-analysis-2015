@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-#data = pd.read_csv("datasets/CO2_passenger_cars_v12.tsv", sep='\t', header=0)#treating the original data
+#data = pd.read_csv("../datasets/CO2_passenger_cars_v12.tsv", sep='\t', header=0)#treating the original data
 data = pd.read_csv("../datasets/CO2-passenger-cars-v12-less.csv", header=0)#treating the -less data
 
 data = pd.concat([data[col].astype(str).str.upper() for col in data.columns], axis=1)

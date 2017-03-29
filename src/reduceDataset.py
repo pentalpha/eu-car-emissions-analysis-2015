@@ -11,7 +11,6 @@ def topX(dataFrame, topx, column, ascendingOrder=False):
             toUse.append(False)
     return data[toUse]
 
-
 data = pd.read_csv("../datasets/CO2_passenger_cars_v12.tsv", sep='\t', header=0)
 
 nRows = data.shape[0] #get count of rows

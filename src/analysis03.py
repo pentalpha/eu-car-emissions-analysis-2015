@@ -35,14 +35,10 @@ for m in manufact:
     for label, row in mData.iterrows():
         r = row['r']
         if(math.isnan(r)):
-            #print("Detected NaN on r in ", m, ", e=", e, ", regs=nan." )
-            #detectedNaN = True
             r = 0
         regs = regs + r
         e = row['e']
         if(math.isnan(e)):
-            #print("Detected NaN on e in ", m, ", e=nan, regs=", r, "." )
-            #detectedNaN = True
             e = 0
         em = em + (e * r)
         if(e <= 95):
@@ -50,23 +46,16 @@ for m in manufact:
     if(math.isnan(regs)):
         regs = 0
     registers.append(regs)
-
     if(math.isnan(em)):
         em = 0
     totalEmission.append(em)
-
     if(math.isnan(c95)):
         c95 = 0
     carsUnder95.append(c95)
-
     if(math.isnan(em / regs) == False):
         averageE.append(em/regs)
     else:
-        if(detectedNaN == False):
-            print("Detected NaN on avgE in ", m, ", em=", em, ", regs=", regs, "." )
-            detectedNaN = True
         averageE.append(0)
-
     if(math.isnan((c95/regs)*100) == False):
         carsUnder95Percent.append((c95/regs)*100)
     else:

@@ -1,2 +1,2 @@
-python src/reduceDataset.py
-python src/treatDataset.py
+python3 src/reduceDataset.py
+python3 src/treatDataset.py

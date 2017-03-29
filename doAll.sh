@@ -1,4 +1,4 @@
-python src/analysis01.py
-python src/analysis02.py
-python src/analysis03.py
-python src/analysis04.py
+python3 src/analysis01.py
+python3 src/analysis02.py
+python3 src/analysis03.py
+python3 src/analysis04.py
